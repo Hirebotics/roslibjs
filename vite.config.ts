@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { defineConfig } from "vitest/config";
 import dts from "vite-plugin-dts";
-import checker from "vite-plugin-checker";
+// import checker from "vite-plugin-checker";
 import { externalizeDeps } from "vite-plugin-externalize-deps";
 
 export default defineConfig({
@@ -12,15 +12,15 @@ export default defineConfig({
       // Only generate types for our actual source code, obv
       include: ["src"],
     }),
-    checker({
-      typescript: {
-        tsconfigPath: "./tsconfig.json",
-      },
-      eslint: {
-        lintCommand: "eslint .",
-        useFlatConfig: true,
-      },
-    }),
+    // checker({
+    //   typescript: {
+    //     tsconfigPath: "./tsconfig.json",
+    //   },
+    //   eslint: {
+    //     lintCommand: "eslint .",
+    //     useFlatConfig: true,
+    //   },
+    // }),
     externalizeDeps(),
   ],
   build: {

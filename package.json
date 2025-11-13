@@ -60,8 +60,8 @@
     "doc": "typedoc src/RosLib.ts",
     "lint": "eslint .",
     "test": "vitest",
-    "prepublishOnly": "npm run test",
-    "prepare": "npm run build"
+    "prepublishOnly": "yarn test",
+    "prepare": "yarn build"
   },
   "repository": {
     "type": "git",
