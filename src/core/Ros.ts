@@ -41,7 +41,7 @@ interface TypeDefDict {
  * Manages connection to the rosbridge server and all interactions with ROS.
  *
  * Emits the following events:
- *  * 'open'  - Connected to the rosbridge server.
+ *  * 'connection'  - Connected to the rosbridge server.
  *  * 'close' - Disconnected to the rosbridge server.
  *  * 'error' - There was an error with ROS.
  *  * &#60;topicName&#62; - A message came from rosbridge with the given topic name.
@@ -49,7 +49,7 @@ interface TypeDefDict {
  */
 export default class Ros extends EventEmitter<
   {
-    open: [TransportEvent];
+    connection: [TransportEvent];
     close: [TransportEvent];
     error: [TransportEvent];
     // Any dynamically-named event should correspond to a rosbridge protocol message
@@ -100,7 +100,7 @@ export default class Ros extends EventEmitter<
 
     transport.on("open", (event: TransportEvent) => {
       this.#isConnected = true;
-      this.emit("open", event);
+      this.emit("connection", event);
     });
 
     transport.on("close", (event: TransportEvent) => {
@@ -195,7 +195,7 @@ export default class Ros extends EventEmitter<
     if (this.isConnected()) {
       this.transport?.send(message);
     } else {
-      this.once("open", () => {
+      this.once("connection", () => {
         this.transport?.send(message);
       });
     }
