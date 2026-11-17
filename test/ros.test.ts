@@ -244,7 +244,10 @@ describe("Ros", function () {
       const rosOnceSpy = vi.spyOn(ros, "once");
       ros.callOnConnection({ op: "test" });
 
-      expect(rosOnceSpy).toHaveBeenCalledWith("open", expect.any(Function));
+      expect(rosOnceSpy).toHaveBeenCalledWith(
+        "connection",
+        expect.any(Function),
+      );
       expect(mockTransport.send).not.toHaveBeenCalled();
 
       // Once connected, the message is sent
